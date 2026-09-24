@@ -1,0 +1,99 @@
+cd ~ 
+git clone https://github.com/JosephDomin/datasci350-quiz01.git
+cd datasci350-quiz01
+git remote -v
+
+Task 1 switc branch
+git switch -c station-upgrade 
+
+Taks 2 create directory results
+mkdir results
+
+Taks 3 empty file and append
+touch results/summary.md
+printf '%s\n' 'Analysis of the first field season.' >> results/summary.md
+
+Task 4 stage & commit
+git add results
+git commit -m "Add results directory"
+
+Task 5 rename
+mv data/sensor-readings.csv data/station-data.csv
+
+Tasks 6 direcotry and copy
+mkdir scripts/archive && cp scripts/*.py scripts/archive/
+
+Task 7 Delete
+rm docs/notes.md
+
+Task 8 stage and commit
+git add -A
+git commit -m "Update station files"
+
+Task 9 create ignore & append
+touch .gitignore
+printf '%s\n' 'temp/' 'log?.txt' >> .gitignore
+
+Tasks 10 display content
+cat .gitignore
+
+Task 11 stage & commit
+git add .gitignore && git commit -m "Add gitignore"
+
+Task 12 create 
+touch log{1..4}.txt
+
+Task 13 status
+git status
+output: git status
+On branch station-upgrade
+nothing to commit, working tree clean
+They don't appear because we told git not to track
+files like log?.txt
+
+Task 14 count
+wc -l < data/station-data.csv >> results/summary.md
+
+Tasks 15 difference
+sed -i '1i# Reviewed for the field season report' scripts/03-plot.py
+git diff
+Output:
+diff --git a/results/summary.md b/results/summary.md
+index 295821a..5d5458e 100644
+--- a/results/summary.md
++++ b/results/summary.md
+@@ -1 +1,2 @@
+ Analysis of the first field season.
++41
+diff --git a/scripts/03-plot.py b/scripts/03-plot.py
+index 70ea841..c5af7da 100644
+--- a/scripts/03-plot.py
++++ b/scripts/03-plot.py
+@@ -1,3 +1,4 @@
+The lines with plus are showing the added line we just did
+
+Task 16 stage typo
+git add -A
+git commit -m "Update analyss"
+
+Task 17 amend typo
+git commit --amend -m "Update analysis"
+
+Task 18 merge
+git switch main
+git merge station-upgrade
+
+Task 19 log
+git log --oneline
+output:f0a95b2 Add gitignore
+da42e72 Update station files
+aaf725f Add results directory
+a22b29e (origin/main, origin/HEAD) docs(readme): note committing commands.txt before task 18 and force push for bonus 2
+b645f85 feat: quiz 01 starter files
+
+Task 20 push 
+git add commands.txt
+git commit -m "Add command log"
+git push -u origin main station-upgrade
+
+
